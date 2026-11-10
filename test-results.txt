@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: motion frames preserve five ordered bins
+ok 1 - motion frames preserve five ordered bins
+  ---
+  duration_ms: 1.36846
+  type: 'test'
+  ...
+# Subtest: invalid motion rejected
+ok 2 - invalid motion rejected
+  ---
+  duration_ms: 0.363106
+  type: 'test'
+  ...
+# Subtest: ambiguous candidate abstains
+ok 3 - ambiguous candidate abstains
+  ---
+  duration_ms: 4.051288
+  type: 'test'
+  ...
+# Subtest: clear cue is candidate
+ok 4 - clear cue is candidate
+  ---
+  duration_ms: 2.178249
+  type: 'test'
+  ...
+# Subtest: ignore cue does not communicate
+ok 5 - ignore cue does not communicate
+  ---
+  duration_ms: 1.026826
+  type: 'test'
+  ...
+# Subtest: requires trained alternative
+ok 6 - requires trained alternative
+  ---
+  duration_ms: 0.149275
+  type: 'test'
+  ...
+# Subtest: sound mode is distinct from movement and supports custom phrase
+ok 7 - sound mode is distinct from movement and supports custom phrase
+  ---
+  duration_ms: 1.015698
+  type: 'test'
+  ...
+# Subtest: profile import sanitizes corrupt examples
+ok 8 - profile import sanitizes corrupt examples
+  ---
+  duration_ms: 2.829419
+  type: 'test'
+  ...
+# Subtest: scene accepts arbitrary pretrained embedding dimensions
+ok 9 - scene accepts arbitrary pretrained embedding dimensions
+  ---
+  duration_ms: 0.959164
+  type: 'test'
+  ...
+# Subtest: scene comparison rejects differing sizes
+ok 10 - scene comparison rejects differing sizes
+  ---
+  duration_ms: 0.471199
+  type: 'test'
+  ...
+# Subtest: scene signature averages repeated views
+ok 11 - scene signature averages repeated views
+  ---
+  duration_ms: 0.315344
+  type: 'test'
+  ...
+# Subtest: sound templates trim surrounding silence
+ok 12 - sound templates trim surrounding silence
+  ---
+  duration_ms: 1.796724
+  type: 'test'
+  ...
+# Subtest: isolated transient still forms a tentative signature
+ok 13 - isolated transient still forms a tentative signature
+  ---
+  duration_ms: 0.191018
+  type: 'test'
+  ...
+# Subtest: silent sound abstains
+ok 14 - silent sound abstains
+  ---
+  duration_ms: 0.126641
+  type: 'test'
+  ...
+# Subtest: offline FFT provides 1024 finite frequency bins
+ok 15 - offline FFT provides 1024 finite frequency bins
+  ---
+  duration_ms: 3.741893
+  type: 'test'
+  ...
+# Subtest: PCM analysis produces sound frames
+ok 16 - PCM analysis produces sound frames
+  ---
+  duration_ms: 11.464006
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 88.801705

@@ -1,0 +1,17 @@
+import test from 'node:test'; import assert from 'node:assert/strict';
+import {MOTION_DIM,MOTION_SIG_LENGTH,makeMotionSignature,validMotion,motionDistance,matchInput,safeProfile,starterProfile} from '../recognition-core.js';
+import {VOICE_SIGNATURE_LENGTH} from '../voice-recognition.js';
+const sig=(v=0)=>Array(MOTION_SIG_LENGTH).fill(v);
+const cue=(id,v,ignore=false,mode='movement')=>({id,mode,phrase:id,ignore,examples:[1,2,3,4].map((n)=>({sig:mode==='movement'?sig(v+0.004*n):Array(VOICE_SIGNATURE_LENGTH).fill(v+0.001*n)}))});
+test('motion frames preserve five ordered bins',()=>{const a=Array.from({length:20},(_,i)=>Array(MOTION_DIM).fill(i/100));const v=makeMotionSignature(a);assert.equal(v.length,MOTION_SIG_LENGTH);assert.ok(v[0]<v[MOTION_DIM*4]);});
+test('invalid motion rejected',()=>{assert.equal(validMotion(Array(4).fill(0)),false);assert.equal(motionDistance(sig(0),sig(1)),1);});
+test('ambiguous candidate abstains',()=>{const a=cue('yes',.1),b=cue('no',.102);assert.equal(matchInput('movement',sig(.10),[a,b]).status,'unknown');});
+test('clear cue is candidate',()=>{const a=cue('yes',.10),b=cue('no',1.4);const res=matchInput('movement',sig(.10),[a,b]);assert.equal(res.status,'candidate');assert.equal(res.phrase,'yes');});
+test('ignore cue does not communicate',()=>{const a=cue('cough',.10,true),b=cue('yes',1.4);assert.equal(matchInput('movement',sig(.10),[a,b]).status,'ignored');});
+test('requires trained alternative',()=>{assert.equal(matchInput('movement',sig(.10),[cue('yes',.1)]).status,'not-ready');});
+test('sound mode is distinct from movement and supports custom phrase',()=>{const a=cue('custom',.10,false,'sound'),b=cue('background',.5,true,'sound');assert.equal(matchInput('sound',Array(VOICE_SIGNATURE_LENGTH).fill(.1),[a,b]).phrase,'custom');});
+test('profile import sanitizes corrupt examples',()=>{const p=starterProfile();p.cues[0].examples=[{sig:[1,2,3]}];assert.equal(safeProfile(p).cues[0].examples.length,0);});
+import {normaliseScene,sceneDistance,makeSceneSignature} from '../recognition-core.js';
+test('scene accepts arbitrary pretrained embedding dimensions',()=>{const a=normaliseScene(Array(64).fill(1));assert.equal(a.length,64);assert.ok(sceneDistance(a,a)<1e-8);});
+test('scene comparison rejects differing sizes',()=>{const a=normaliseScene(Array(64).fill(1));const b=normaliseScene(Array(128).fill(1));assert.equal(sceneDistance(a,b),Infinity);});
+test('scene signature averages repeated views',()=>{const a=normaliseScene(Array.from({length:64},(_,i)=>i%3));assert.equal(makeSceneSignature([a,a,a]).length,64);});

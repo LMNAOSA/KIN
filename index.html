@@ -1,99 +1,25 @@
 <!doctype html>
-<html lang="en-AU">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#111512" />
-  <meta name="description" content="KIN — a personal gesture-to-communication prototype, made for people with complex communication needs." />
-  <title>KIN — Communication, your way.</title>
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="stylesheet" href="./styles.css" />
-</head>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b1514"><meta name="description" content="KIN learns personal sounds and movements to support individual communication."><title>KIN — Everyone has a language.</title><link rel="icon" type="image/svg+xml" href="./favicon.svg"><link rel="stylesheet" href="./styles.css"></head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="shell">
-    <header class="topbar">
-      <a class="brand" href="#live" aria-label="KIN home">
-        <span class="brandmark" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span>KIN<span class="branddot">.</span></span>
-      </a>
-      <nav class="nav" aria-label="Main navigation">
-        <button class="nav-link is-active" data-tab="live" aria-current="page">01 / LIVE</button>
-        <button class="nav-link" data-tab="teach">02 / TEACH</button>
-        <button class="nav-link" data-tab="history">03 / SESSION</button>
-      </nav>
-      <div class="topbar-right"><span class="privacy-dot"></span> ON-DEVICE VISION</div>
-    </header>
-
-    <main>
-      <section class="intro">
-        <div class="eyebrow"><span class="eyebrow-line"></span> A NEW KIND OF CONVERSATION <span class="version">PROTOTYPE / V0.1</span></div>
-        <h1>Words aren’t the<br/>only way to <em>say it.</em></h1>
-        <div class="intro-footer"><p>Meet KIN. A communication companion that learns a person’s natural gestures and helps others understand them.</p><div class="intro-index">01 — 04 <span>STARTING VOCABULARY</span></div></div>
-      </section>
-
-      <section id="panel-live" class="tab-panel" data-panel="live">
-        <div class="workspace">
-          <div class="camera-card">
-            <div class="card-heading"><span class="small-label">01 / LIVE INPUT</span><span class="camera-status" id="cameraStatus"><span class="status-led"></span> CAMERA OFF</span></div>
-            <div class="camera-stage" id="cameraStage">
-              <video id="camera" playsinline autoplay muted></video>
-              <canvas id="overlay"></canvas>
-              <div class="camera-empty" id="cameraEmpty"><div class="camera-symbol" aria-hidden="true"><span class="camera-cross cross1"></span><span class="camera-cross cross2"></span><span class="camera-cross cross3"></span><span class="camera-cross cross4"></span><span class="camera-core">◉</span></div><p>YOUR MOVEMENT.<br/>YOUR MESSAGE.</p><small>Turn on the camera to begin.</small></div>
-              <div class="camera-glass" aria-hidden="true"><span>VISION / KIN-01</span><span id="trackStatus">AWAITING CAMERA</span></div>
-            </div>
-            <div class="camera-tools">
-              <button class="btn primary" id="cameraBtn">↗ &nbsp; START CAMERA</button>
-              <button class="btn ghost" id="flipBtn" title="Switch between front and rear cameras" disabled>FLIP CAMERA ↻</button>
-              <label class="sound-toggle"><input type="checkbox" id="voiceToggle" checked /> <span>Speak to partner</span></label>
-            </div>
-            <div class="recognition-settings">
-              <label for="holdRange">CONFIRMATION TIME <strong id="holdLabel">1.1s</strong></label><input id="holdRange" type="range" min="700" max="2200" step="100" value="1100" />
-              <p>Keep a gesture in position until the recognition bar fills. Move your hand away between messages.</p>
-            </div>
-          </div>
-          <div class="response-card">
-            <div class="card-heading"><span class="small-label">02 / TRANSLATION</span><span class="ready-indicator" id="modeIndicator">STARTER RULES</span></div>
-            <div class="translation-output" aria-live="polite" aria-atomic="true">
-              <span class="output-eyebrow" id="outputEyebrow">LISTENING FOR A GESTURE</span>
-              <div class="big-translation" id="bigTranslation">Your voice.<br/>Your way<span>.</span></div>
-              <div class="confidence-wrap"><div class="confidence-top"><span id="confidenceText">Awaiting movement</span><span id="confidenceNum">—</span></div><div class="progress-rail"><div class="progress-fill" id="confidenceBar"></div></div></div>
-            </div>
-            <div class="cue-section"><div class="cue-header"><span class="small-label">THE FOUR STARTING CUES</span><span>SELECT TO PREVIEW</span></div>
-              <div class="cue-grid" id="liveCueGrid"></div>
-              <p class="manual-note">Preview buttons demonstrate the partner output; they are <strong>not</strong> camera recognition.</p>
-            </div>
-          </div>
-        </div>
-        <div class="info-strip"><div class="info-icon">i</div><p><strong>Built to translate outgoing gestures.</strong> This first version speaks or displays messages for a communication partner. It does not yet provide tactile responses back to a deafblind user. Do not rely on it for urgent, safety-critical or medical communication.</p></div>
-      </section>
-
-      <section id="panel-teach" class="tab-panel" data-panel="teach" hidden>
-        <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PERSONALISE THE RECOGNISER</div><h2>Teach it your<br/><em>own language.</em></h2></div><p>Everyone moves differently. Capture a gesture from the live camera or upload a short video. KIN learns from hand and face landmarks, not from saving the footage.</p></div>
-        <div class="teach-status" id="teachStatus"><span class="status-led"></span> Starter location-based rules are ready. Add personalised examples to improve recognition.</div>
-        <div class="training-grid" id="trainingGrid"></div>
-        <div class="training-actions">
-          <div><strong>YOUR PERSONALISED PROFILE</strong><p>Saved in this browser only. Export it to move it to another device.</p></div>
-          <div class="action-buttons"><button class="btn ghost" id="exportProfile">↓ EXPORT PROFILE</button><label class="btn ghost upload-label">↑ IMPORT PROFILE<input type="file" id="importProfile" accept=".json,application/json" hidden /></label><button class="btn danger" id="resetTraining">RESET TRAINING</button></div>
-        </div>
-        <div class="coach-card"><div class="coach-number">!</div><div><h3>More examples matter.</h3><p>Your four videos establish the meaning of each cue. They are not enough to demonstrate reliable recognition across people, lighting, camera angles or ordinary non-communicative movement. Start with several clips per cue, add everyday non-gesture tests, and always confirm with the person whose communication is being interpreted.</p></div></div>
-      </section>
-
-      <section id="panel-history" class="tab-panel" data-panel="history" hidden>
-        <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> UNDERSTAND THE SESSION</div><h2>Every message<br/><em>matters.</em></h2></div><p>Review recognised gestures during this session. The log stays in memory until you close or refresh the page unless you export it.</p></div>
-        <div class="history-wrap"><div class="history-top"><span class="small-label">COMMUNICATION LOG</span><div class="action-buttons"><button id="exportSession" class="btn ghost">↓ EXPORT CSV</button><button id="clearSession" class="btn ghost">CLEAR</button></div></div><div id="historyList" class="history-list"><div class="empty-history">No messages yet. Start the camera, or preview a cue in Live.</div></div></div>
-      </section>
-    </main>
-
-    <footer><div class="foot-brand">KIN<span>.</span></div><div>COMMUNICATION IS A HUMAN RIGHT.</div><div>PROTOTYPE • NOT A CLINICAL DEVICE</div></footer>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <div class="training-modal" id="trainingModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="trainingTitle">
-    <div class="modal-inner"><div class="modal-kicker">CAMERA TRAINING</div><h3 id="trainingTitle">Hold your gesture</h3><p id="trainingDetail">Keep the gesture steady and in view of the camera.</p><video id="trainingPreview" class="training-preview" playsinline autoplay muted aria-label="Live camera preview while teaching gesture"></video><div class="modal-number" id="trainingCountdown">3</div><div class="progress-rail"><div class="progress-fill" id="trainingProgress"></div></div><button class="btn ghost" id="cancelTraining">CANCEL</button></div>
-  </div>
-  <video id="importVideo" playsinline muted preload="auto" style="position:fixed;opacity:0;pointer-events:none;width:1px;height:1px;left:-9999px;top:-9999px" aria-hidden="true"></video>
-  <script type="module" src="./app.js"></script>
-</body>
-</html>
+<div class="shell">
+<header class="masthead"><a href="#home" class="logo" aria-label="KIN home"><span class="signalmark"><i></i><i></i><i></i></span>KIN<span class="accent">.</span></a><span class="mast-subtitle">PERSONALISED COMMUNICATION STUDIO <small>V0.3 / EXPERIMENTAL</small></span><div class="profile-control"><label for="profileSelect">PERSON / PROFILE</label><div class="profile-row"><select id="profileSelect" aria-label="Select communication profile"></select><button id="newProfile" class="mini" title="Create another person's profile">+ NEW</button><button id="renameProfile" class="mini" title="Rename this profile">RENAME</button><button id="deleteProfile" class="mini" title="Delete this profile and its samples">DELETE</button></div></div></header>
+<nav class="tabs" aria-label="Sections"><button class="tab active" data-tab="home">01 / OVERVIEW</button><button class="tab" data-tab="train">02 / TEACH KIN</button><button class="tab" data-tab="live">03 / LIVE TRANSLATOR</button><button class="tab" data-tab="log">04 / HISTORY</button></nav>
+<main>
+<section id="home" class="panel"><div class="hero"><div class="eyebrow"><span class="dot"></span> YOUR COMMUNICATION. YOUR RULES.</div><h1>Everyone has<br>a <em>language.</em></h1><div class="hero-bottom"><p>KIN learns the sounds and movements someone already uses, then helps others understand what they mean.</p><div class="hero-graphic" aria-hidden="true"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring-core">K</div></div></div></div>
+<div class="summary-grid"><article class="summary"><div class="micro">CURRENT PROFILE</div><strong id="currentPerson">—</strong><p>Each person keeps a separate, trainable vocabulary.</p></article><article class="summary"><div class="micro">PERSONAL SIGNALS</div><strong id="cueCount">0</strong><p>Anything you name can become a communication target.</p></article><article class="summary"><div class="micro">TRAINING EXAMPLES</div><strong id="sampleCount">0</strong><p>Independent examples make recognition less fragile.</p></article></div>
+<div class="section-bar"><div><span class="micro">HOW KIN WORKS</span><h2>Built around the person.</h2></div><button class="button primary" data-go="train">START TEACHING <span>↗</span></button></div>
+<div class="mode-grid"><article class="mode-card"><div class="mode-icon">◉</div><div class="micro">01 / SOUND</div><h3>Grunts. Hums.<br>Taps. Sounds.</h3><p>Record any distinct sound the microphone can capture. Teach what it means to this person.</p><span>ACOUSTIC FEATURE MATCHING</span></article><article class="mode-card"><div class="mode-icon">⌁</div><div class="micro">02 / MOVEMENT</div><h3>Hands. Head.<br>Face. Body.</h3><p>Show KIN a movement or expression. It learns changing body, face and hand landmarks over time.</p><span>VISUAL LANDMARK SEQUENCES</span></article><article class="mode-card"><div class="mode-icon">◇</div><div class="micro">03 / VISUAL SCENE</div><h3>Objects. Places.<br>Visual patterns.</h3><p>Teach KIN an example scene using whole-image embeddings. Lighting and backgrounds can interfere with the recognition.</p><span>EXPERIMENTAL IMAGE EMBEDDINGS</span></article><article class="mode-card"><div class="mode-icon">↗</div><div class="micro">04 / RESPONSE</div><h3>A meaning.<br>Not a guess.</h3><p>Possible matches wait for a partner's confirmation. Unknown or similar signals are left untranslated.</p><span>HUMAN-IN-THE-LOOP</span></article></div>
+<div class="disclosure"><strong>Important boundary.</strong> V0.3 can learn examples of sounds, visible movements and some visual scenes or objects. Image embeddings do not guarantee recognition of arbitrary objects or actions. The app does not interpret meaning independently or reliably identify every sound or movement. It needs supervised examples, verification with the person, and real-world accuracy testing. Not suitable as the only means of urgent or medical communication.</div>
+</section>
+<section id="train" class="panel" hidden><div class="section-title"><div class="eyebrow"><span class="dot"></span> TRAIN A PERSONAL COMMUNICATION PROFILE</div><h1>Teach it what<br><em>they mean.</em></h1><p>Set a phrase, choose the signal type, then capture examples. You can make as many meanings as the person needs.</p></div>
+<div class="train-layout"><div class="panel-card add-card"><div class="topline"><span class="micro">01 / CREATE A SIGNAL</span><span class="hint">BESPOKE VOCABULARY</span></div><form id="cueForm"><label>WHAT DOES IT MEAN?<input id="cuePhrase" maxlength="120" required placeholder="e.g. Yes, I need help, One more time"></label><div class="two-col"><label>SIGNAL TYPE<select id="cueMode"><option value="sound">Sound / vocalisation</option><option value="movement">Movement / expression</option><option value="scene">Object / visual scene (experimental)</option></select></label><label>CLASSIFICATION<select id="cueKind"><option value="message">Communicates a message</option><option value="ignore">Ignore / not communication</option></select></label></div><label>CONTEXT OR NOTES (OPTIONAL)<textarea id="cueNote" rows="3" maxlength="240" placeholder="How they express it; who confirmed the meaning; situations where it occurs"></textarea></label><button class="button primary full" type="submit">+ ADD SIGNAL</button></form><div class="privacy-note">Training features stay in this browser. No raw audio or video is saved by the app.</div></div>
+<div class="panel-card capture-card"><div class="topline"><span class="micro">02 / CAPTURE EXAMPLES</span><span class="hint" id="captureHint">SELECT A SIGNAL</span></div><div class="preview-stage"><video id="video" autoplay playsinline muted></video><canvas id="frameOverlay" aria-hidden="true"></canvas><div class="preview-empty" id="previewEmpty"><span>◉</span><strong>CAMERA OFF</strong><small>Start the camera when teaching movements.</small></div><span class="preview-status" id="previewStatus">CAMERA NOT STARTED</span></div><div class="device-buttons"><button id="cameraButton" class="button outline">START CAMERA</button><button id="micButton" class="button outline">START MICROPHONE</button></div><div class="meter" aria-hidden="true"><div id="audioLevel"></div></div><label class="sensitivity">MICROPHONE TRIGGER <input id="sensitivity" type="range" min="5" max="65" value="18" step="1"><span id="sensitivityValue">18 / 1000</span></label><div class="capture-status" id="captureStatus" role="status" aria-live="polite">Select a signal from the list below to begin training.</div><div class="capture-actions"><button id="captureButton" class="button primary full" disabled>RECORD AN EXAMPLE · 3 SEC</button><label id="videoUploadLabel" class="button outline full upload" hidden>IMPORT A MOVEMENT VIDEO<input type="file" id="videoFile" accept="video/*,.mp4,.mov,.webm" hidden></label><label id="audioUploadLabel" class="button outline full upload" hidden>IMPORT AN AUDIO RECORDING<input type="file" id="audioFile" accept="audio/*,.wav,.mp3,.m4a,.ogg,.aac" hidden></label></div></div></div>
+<div class="section-bar"><div><span class="micro">03 / PERSONAL VOCABULARY</span><h2 id="vocabHeading">Signals for this person</h2></div><div class="inline-buttons"><button class="button outline" id="exportProfile">↓ EXPORT PROFILE</button><label class="button outline upload">↑ IMPORT PROFILE<input type="file" id="importProfile" accept=".json,application/json" hidden></label></div></div><div class="vocabulary" id="vocabulary"></div><div class="coach"><strong>Train what *isn't* a message, too.</strong><p>Add examples such as coughing, scratching, background conversation, fidgeting or random hand movement as <em>Ignore</em> signals. To make any match possible, KIN currently requires at least three examples of two different signals in the same category (or one message plus an Ignore signal). Aim for considerably more examples across days, environments and positions.</p></div>
+</section>
+<section id="live" class="panel" hidden><div class="section-title"><div class="eyebrow"><span class="dot"></span> RECOGNITION / HUMAN CONFIRMATION</div><h1>Make the<br><em>connection.</em></h1><p>Start one or both sensors. KIN suggests a possible meaning when it sees or hears something resembling this person's trained examples.</p></div><div class="live-layout"><div class="panel-card"><div class="topline"><span class="micro">01 / ACTIVE SENSORS</span><span class="hint" id="liveDeviceState">OFFLINE</span></div><div class="live-badges"><span id="cameraChip">○ CAMERA OFF</span><span id="micChip">○ MICROPHONE OFF</span></div><div class="live-actions"><button class="button outline full" id="liveCamera">START / STOP CAMERA</button><button class="button outline full" id="liveMic">START / STOP MICROPHONE</button></div><p class="small-copy">Camera and microphone access are requested separately. Processing takes place in your browser, though the first camera start downloads detection models. There is no background listening when the microphone is stopped.</p></div><div class="panel-card translation-card"><div class="topline"><span class="micro">02 / POSSIBLE MEANING</span><span class="hint" id="candidateMode">AWAITING INPUT</span></div><span class="small-copy">NOTHING IS SPOKEN UNTIL A PARTNER CONFIRMS.</span><div class="translated" id="candidateText" aria-live="polite">Listening for<br>a signal<span>.</span></div><div class="suggestion-note" id="candidateNote">KIN won't guess an unknown sound or movement.</div><div class="live-actions"><button class="button primary full" id="approveButton" disabled>✓ CONFIRM & SPEAK</button><button class="button outline full" id="dismissButton" disabled>DISMISS</button></div><label class="speak-option"><input type="checkbox" id="speechSetting" checked> Speak confirmed messages aloud</label></div></div><div class="coach"><strong>Partner confirmation is deliberate.</strong><p>This prototype does not autonomously infer intention. A familiar communication partner should interpret context and check the suggestion with the person wherever possible. For people who are deafblind, this is outgoing communication only: a separate tactile response channel is still needed.</p></div></section>
+<section id="log" class="panel" hidden><div class="section-title"><div class="eyebrow"><span class="dot"></span> THIS SESSION ONLY</div><h1>Every message<br><em>matters.</em></h1><p>Session events are kept in memory until you refresh this page. You can export a copy for review.</p></div><div class="panel-card"><div class="topline"><span class="micro">RECENT CONFIRMED AND DISMISSED EVENTS</span><div class="inline-buttons"><button class="button outline" id="exportHistory">↓ EXPORT CSV</button><button class="button outline" id="clearHistory">CLEAR</button></div></div><div id="historyItems" class="history-items"><p>No communication events in this session.</p></div></div></section>
+</main><footer><strong>KIN<span class="accent">.</span></strong><span>EVERYONE HAS A LANGUAGE.</span><span>PROTOTYPE • NOT A CLINICAL DEVICE</span></footer>
+</div>
+<div id="dialogShade" class="shade" hidden><div role="dialog" aria-modal="true" aria-labelledby="dialogTitle" class="dialog"><div class="micro" id="dialogEyebrow">TRAINING</div><h2 id="dialogTitle">Recording example</h2><div id="dialogCountdown" class="countdown">3</div><div class="meter"><div id="captureProgress"></div></div><p id="dialogDetail">Use the person's natural signal during the recording.</p><button id="cancelCapture" class="button outline full">CANCEL</button></div></div><div id="toast" role="status" class="toast" aria-live="polite"></div><video id="importVideo" playsinline muted style="position:fixed;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none"></video>
+<script type="module" src="./app.js"></script>
+</body></html>
