@@ -1,0 +1,11 @@
+{
+  "name": "kin-gesture-communication",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Experimental browser-based personalised gesture-to-communication aid",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "KIN — Your movement. Your message.",
+  "short_name": "KIN",
+  "description": "An experimental personalised gesture communication app.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111512",
+  "theme_color": "#111512",
+  "icons": [{ "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
