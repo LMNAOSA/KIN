@@ -1,0 +1,16 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+coverage/
+*.mp4
+*.mov
+*.m4a
+*.wav
+*.webm
+*.mp3
+*.aac
+*.ogg
+KIN-private-training-videos/
+*.kin-profile.json
